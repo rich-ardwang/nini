@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{c6c60791-19d3-4959-98be-ddb25d1115b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\h">
+      <UniqueIdentifier>{1aa92678-7c1a-47f1-aeae-adb6287d625b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\c">
+      <UniqueIdentifier>{5e16e794-bd79-40a7-a7cf-8d2a2b3a5c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\res">
+      <UniqueIdentifier>{b96e845b-a6ac-414d-b632-2e3ec3839cdc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.c">
+      <Filter>src\c</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ni_list.c">
+      <Filter>src\c</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ni_malloc.c">
+      <Filter>src\c</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ni_string.c">
+      <Filter>src\c</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\nini.h">
+      <Filter>src\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ni_atomic.h">
+      <Filter>src\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ni_list.h">
+      <Filter>src\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ni_malloc.h">
+      <Filter>src\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ni_string.h">
+      <Filter>src\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ni_version.h">
+      <Filter>src\h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ni_testhelp.h">
+      <Filter>src\h</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
