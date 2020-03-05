@@ -1,7 +1,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "nini.h"
-#include "limits.h"
 
 #define UNUSED(x) ((void)(x))
 
@@ -239,7 +238,6 @@ int main(int argc, char **argv) {
     //already test ok
     //ni_list_test();
 
-    //already test ok
     ni_string_test();
 
     getchar();

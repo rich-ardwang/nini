@@ -8,14 +8,9 @@
 #ifndef _NI_MALLOC_H_
 #define _NI_MALLOC_H_
 
-#ifndef ZMALLOC_LIB
-#define ZMALLOC_LIB "libc"
-#ifdef __GLIBC__
 #include <malloc.h>
 #define HAVE_MALLOC_SIZE        1
 #define ni_malloc_size(p)       malloc_usable_size(p)
-#endif
-#endif
 
 void *ni_malloc(size_t size);
 void *ni_calloc(size_t mblock, size_t size);

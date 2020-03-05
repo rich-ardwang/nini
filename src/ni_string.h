@@ -192,7 +192,7 @@ ni_string ni_string_new_len(const void *init, size_t initlen);
 ni_string ni_string_new(const char *init);
 ni_string ni_string_empty(void);
 ni_string ni_string_dup(const ni_string s);
-void ni_string_free(ni_string s);
+void ni_string_obj_free(ni_string s);
 ni_string ni_string_grow_zero(ni_string s, size_t len);
 ni_string ni_string_cat_len(ni_string s, const void *t, size_t len);
 ni_string ni_string_cat(ni_string s, const char *t);
@@ -238,6 +238,6 @@ void *ni_string_alloc_ptr(ni_string s);
  * respectively free or allocate. */
 void *ni_string_malloc(size_t size);
 void *ni_string_realloc(void *ptr, size_t size);
-void ni_string_ptr_free(void *ptr);
+void ni_string_free(void *ptr);
 
 #endif /* _NI_STRING_H_ */

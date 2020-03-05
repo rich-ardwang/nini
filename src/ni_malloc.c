@@ -134,7 +134,7 @@ void ni_free(void *ptr) {
     update_ni_malloc_stat_free(ni_malloc_size(ptr));
     free(ptr);
 #else
-    realptr = (char*)(ptr - PREFIX_SIZE);Segmentation fault
+    realptr = (char*)(ptr - PREFIX_SIZE);
     oldsize = *((size_t*)realptr);
     update_ni_malloc_stat_free(oldsize + PREFIX_SIZE);
     free(realptr);

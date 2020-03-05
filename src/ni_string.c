@@ -138,9 +138,9 @@ ni_string ni_string_dup(const ni_string s) {
 }
 
 /* Free an ni_string. No operation is performed if 's' is NULL. */
-void ni_string_free(ni_string s) {
+void ni_string_obj_free(ni_string s) {
     if (s == NULL) return;
-    ni_string_ptr_free((char*)s - ni_string_hdr_size(s[-1]));
+    ni_string_free((char*)s - ni_string_hdr_size(s[-1]));
 }
 
 /* Set the ni_string length to the length as obtained with strlen(), so
@@ -213,7 +213,7 @@ ni_string ni_string_make_room_for(ni_string s, size_t addlen) {
         newsh = ni_string_malloc(hdrlen + newlen + 1);
         if (newsh == NULL) return NULL;
         memcpy((char*)newsh + hdrlen, s, len + 1);
-        ni_string_ptr_free(sh);
+        ni_string_free(sh);
         s = (char*)newsh + hdrlen;
         s[-1] = type;
         ni_string_set_len(s, len);
@@ -256,7 +256,7 @@ ni_string ni_string_remove_free_space(ni_string s) {
         newsh = ni_string_malloc(hdrlen + len + 1);
         if (newsh == NULL) return NULL;
         memcpy((char*)newsh + hdrlen, s, len + 1);
-        ni_string_ptr_free(sh);
+        ni_string_free(sh);
         s = (char*)newsh + hdrlen;
         s[-1] = type;
         ni_string_set_len(s, len);
@@ -515,7 +515,7 @@ ni_string ni_string_cat_vprintf(ni_string s, const char *fmt, va_list ap) {
         vsnprintf(buf, buflen, fmt, cpy);
         va_end(cpy);
         if (buf[buflen - 2] != '\0') {
-            if (buf != staticbuf) ni_string_ptr_free(buf);
+            if (buf != staticbuf) ni_string_free(buf);
             buflen *= 2;
             buf = ni_string_malloc(buflen);
             if (buf == NULL) return NULL;
@@ -526,7 +526,7 @@ ni_string ni_string_cat_vprintf(ni_string s, const char *fmt, va_list ap) {
 
     /* Finally concat the obtained string to the ni_string and return it. */
     t = ni_string_cat(s, buf);
-    if (buf != staticbuf) ni_string_ptr_free(buf);
+    if (buf != staticbuf) ni_string_free(buf);
     return t;
 }
 
@@ -830,8 +830,8 @@ ni_string *ni_string_split_len(const char *s, ssize_t len, const char *sep, int 
 cleanup:
     {
         int i;
-        for (i = 0; i < elements; i++) ni_string_ptr_free(tokens[i]);
-        ni_string_ptr_free(tokens);
+        for (i = 0; i < elements; i++) ni_string_free(tokens[i]);
+        ni_string_free(tokens);
         *count = 0;
         return NULL;
     }
@@ -841,8 +841,8 @@ cleanup:
 void ni_string_free_split_res(ni_string *tokens, int count) {
     if (!tokens) return;
     while (count--)
-        ni_string_ptr_free(tokens[count]);
-    ni_string_ptr_free(tokens);
+        ni_string_free(tokens[count]);
+    ni_string_free(tokens);
 }
 
 /* Append to the ni_string "s" an escaped string representation where
@@ -1026,9 +1026,9 @@ ni_string *ni_string_split_args(const char *line, int *argc) {
 
 err:
     while ((*argc)--)
-        ni_string_ptr_free(vector[*argc]);
-    ni_string_ptr_free(vector);
-    if (current) ni_string_ptr_free(current);
+        ni_string_free(vector[*argc]);
+    ni_string_free(vector);
+    if (current) ni_string_free(current);
     *argc = 0;
     return NULL;
 }
@@ -1088,4 +1088,4 @@ ni_string ni_string_join_ni_string(ni_string *argv, int argc, const char *sep, s
  * even if they use a different allocator. */
 void *ni_string_malloc(size_t size) { return ni_malloc(size); }
 void *ni_string_realloc(void *ptr, size_t size) { return ni_realloc(ptr, size); }
-void ni_string_ptr_free(void *ptr) { ni_free(ptr); }
+void ni_string_free(void *ptr) { ni_free(ptr); }
