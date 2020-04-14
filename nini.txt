@@ -1,0 +1,7 @@
+nini ecosphere：
+nini_utils(所有共通工具封装)
+nini_MQ(实现替代kafka的功能)
+nini_scheduler(实现替代zookeeper的功能)
+nini_cache(实现替代redis的功能)
+nini_cloud(实现反向代理，负载均衡的功能，替代ngnix)
+nini_monitor(实现替代kafka消息监控端的功能)
