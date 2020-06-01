@@ -78,11 +78,20 @@
     <RemoteCCompileToolExe>gcc</RemoteCCompileToolExe>
     <RemoteCppCompileToolExe>g++</RemoteCppCompileToolExe>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <RemoteCCompileToolExe>gcc</RemoteCCompileToolExe>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <RemoteCppCompileToolExe />
+    <RemoteLdToolExe>gcc</RemoteLdToolExe>
+  </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.c" />
     <ClCompile Include="..\src\ni_list.c" />
+    <ClCompile Include="..\src\ni_list_test.c" />
     <ClCompile Include="..\src\ni_malloc.c" />
+    <ClCompile Include="..\src\ni_malloc_test.c" />
     <ClCompile Include="..\src\ni_string.c" />
+    <ClCompile Include="..\src\ni_string_test.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\nini.h" />
@@ -90,10 +99,16 @@
     <ClInclude Include="..\src\ni_list.h" />
     <ClInclude Include="..\src\ni_malloc.h" />
     <ClInclude Include="..\src\ni_string.h" />
+    <ClInclude Include="..\src\ni_test.h" />
     <ClInclude Include="..\src\ni_testhelp.h" />
     <ClInclude Include="..\src\ni_version.h" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <CLanguageStandard>gnu99</CLanguageStandard>
+      <AdditionalIncludeDirectories>../src/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
