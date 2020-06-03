@@ -41,12 +41,12 @@ int ni_list_test() {
     }
 
     //release
-    printf("person list used memory: %zu\n", ni_malloc_used_memory());
+    printf("person list total used memory: %zu\n", ni_malloc_used_memory());
     ni_list_empty(lst);
-    printf("person list used memory: %zu\n", ni_malloc_used_memory());
+    printf("person empty list used memory: %zu\n", ni_malloc_used_memory());
     ni_list_release(lst);
-    printf("person list used memory: %zu\n", ni_malloc_used_memory());
+    printf("person list iterator used memory: %zu\n", ni_malloc_used_memory());
     ni_list_release_iterator(lst_iter);
-    printf("person list used memory: %zu\n", ni_malloc_used_memory());
+    printf("person list left memory: %zu\n", ni_malloc_used_memory());
     return 0;
 }
